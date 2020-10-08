@@ -1,29 +1,57 @@
 
-convdata ist ein Script für sed, den "stream editor".  Es konvertiert
-Datumsangaben in eine einheitliche Form.  Beispielsweise wird "4.  Juli
-2018" zu "2018/07/04".
+convdate ist ein Script für sed, den "stream editor".  Es konvertiert
+Datumsangaben in eine einheitliche Form.
+
+Beispielsweise wird "4.  Juli 2018" zu "2018/07/04".
 
 
 DATEIEN
 
-	README      Kurzbeschreibung des Scripts.
+	README       Kurzbeschreibung des Scripts.
 
-	convdate    Das Script selber.
+	convdate     Das Script selber.
 
-	daten       Eine Datei mit Datumsangaben, um das Script 
-	            auszuprobieren.
+	daten        Eine Datei mit Datumsangaben, um das Script
+	             auszuprobieren.
 
+	convdemo     Ein Script das die Manipulationen von convdate
+	             kommentiert. Aufruf: convdemo daten
 
 AUFRUF
 
 	convdate <Eingabedatei>
 
 
+VARIANTEN
 
-convdata is a script written for sed, the "stream editor".  It converts data
+	datum2iso    Variante von convdate, die zum Format JJJJ-MM-TT
+	             konvertiert.
+	             github.com/BerndStorck/convdate/tree/datum2iso
+
+
+convdate is a script written for sed, the "stream editor".  It converts data
 like "4.  Juli 2018" to "2018/07/04".  To try this you can use the file
 "daten", which contains some possible input data.
+
+FILES
+
+	README       This short description of convdate.
+
+	convdate     The sed script  itself.
+
+	daten        A text file with dates for testing convdate.
+
+	convdemo.en  Ein Script das die Manipulationen von convdate
+	             kommentiert. Aufruf: convdemo daten
+
 
 CALL
 
 	convdate <input file>
+
+
+BRANCHES
+
+	datum2iso    A slightly changed variation of convdate, which
+	             converts not to "yyyy/mm/dd", but to "yyyy-mm-dd".
+	             github.com/BerndStorck/convdate/tree/datum2iso
