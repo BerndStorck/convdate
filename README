@@ -1,15 +1,16 @@
 
-convdate ist ein Script für sed, den "stream editor".  Es konvertiert
-Datumsangaben in eine einheitliche Form.
+datum2iso ist ein sed-Script, den "stream editor".  Es konvertiert
+Datumsangaben in eine einheitliche Form udn ist eine Variante des
+Skripts convdate.
 
-Beispielsweise wird "4.  Juli 2018" zu "2018/07/04".
+Beispiel einer Umwandlung: "4.  Juli 2018" wird zu "2018-07-04".
 
 
 DATEIEN
 
 	README       Kurzbeschreibung des Scripts.
 
-	convdate     Das Script selber.
+	datum2iso    Das Script selber.
 
 	daten        Eine Datei mit Datumsangaben, um das Script
 	             auszuprobieren.
@@ -17,33 +18,28 @@ DATEIEN
 	convdemo     Ein Script das die Manipulationen von convdate
 	             kommentiert. Aufruf: convdemo daten
 
-	datum2iso    Variante von convdate, die zum Format JJJJ-MM-TT
-	             konvertiert.
-
 
 AUFRUF
 
-	convdate <Eingabedatei>
+	datum2iso <Eingabedatei>
 
 
 
-convdate is a script written for sed, the "stream editor".  It converts data
-like "4.  Juli 2018" to "2018/07/04".  To try this you can use the file
-"daten", which contains some possible input data.
+datum2iso is a script written for sed, the "stream editor".  It converts
+data like "4. Juli 2018" to "2018-07-04". To try this you can use the
+file "daten", which contains some possible input data. datum2iso is a
+variation and brach of the script convdate.
 
 FILES
 
 	README       This short description of convdate.
 
-	convdate     The sed script  itself.
+	datum2iso    The sed script  itself.
 
 	daten        A text file with dates for testing convdate.
 
 	convdemo.en  Ein Script das die Manipulationen von convdate
 	             kommentiert. Aufruf: convdemo daten
-
-	datum2iso    A slightly changed variation of convdate, which
-	             converts not to "yyyy/mm/dd", but to "yyyy-mm-dd".
 
 
 CALL
