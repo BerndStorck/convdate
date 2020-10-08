@@ -1,6 +1,8 @@
 #! /bin/sed -f
 #
-# convdemo-en, demonstrates the manipulations of the sed script convdate
+# convdemo-en, 1.0.1
+#
+# Demonstrates the manipulations of the sed script convdate
 # 2.1.0, which converts a German date in an English format, f. e.
 # "20.05.2018" to 2018/05/20.
 #
@@ -12,55 +14,50 @@ p
 s/ //g  					# Delete spaces.
 T tabs
 s/\(.*\)/\1 Spaces removed./
-t tabs
 
 : tabs
 s/[\t]//g  					# Delete tabs.
 T names
 s/\(.*\)/\1 Tabs removed./
-t names
 
 # Replaces month names by numbers independent of the fact, if the first letter is in upper or lower case:
 :names
-/[Jj]/s/[Jj]anuar/01\./
-/[Ff]/s/[Ff]ebruar/02\./
-/[Mm]/s/[Mm]ärz/03\./
-/[Mm]/s/[Mm]aerz/03\./
-/[Aa]/s/[Aa]pril/04\./
-/[Mm]/s/[Mm]ai/05\./
-/[Jj]/s/[Jj]uni/06\./
-/[Jj]/s/[Jj]uli/07\./
-/[Aa]/s/[Aa]ugust/08\./
-/[Ss]/s/[Ss]eptember/09\./
-/[Oo]/s/[Oo]ktober/10\./
-/[Nn]/s/[Nn]ovember/11\./
-/[Dd]/s/[Dd]ezember/12\./
+s/[Jj]anuar/01\./
+s/[Ff]ebruar/02\./
+s/[Mm]ärz/03\./
+s/[Mm]aerz/03\./
+s/[Aa]pril/04\./
+s/[Mm]ai/05\./
+s/[Jj]uni/06\./
+s/[Jj]uli/07\./
+s/[Aa]ugust/08\./
+s/[Ss]eptember/09\./
+s/[Oo]ktober/10\./
+s/[Nn]ovember/11\./
+s/[Dd]ezember/12\./
 T abbrev
 s/\(.*\)/\1 Month name replaced./
-t abbrev
 
 # Same as before, but for the common German month abbreviations:
 :abbrev
-/[Jj]/s/[Jj]an\./01\./
-/[Ff]/s/[Ff]eb\./02\./
-/[Aa]/s/[Aa]pr\./04\./
-/[Jj]/s/[Jj]un\./06\./
-/[Jj]/s/[Jj]ul\./07\./
-/[Aa]/s/[Aa]ug\./08\./
-/[Ss]/s/[Ss]ept\./09\./
-/[Oo]/s/[Oo]kt\./10\./
-/[Nn]/s/[Nn]ov\./11\./
-/[Dd]/s/[Dd]ez\./12\./
+s/[Jj]an\./01\./
+s/[Ff]eb\./02\./
+s/[Aa]pr\./04\./
+s/[Jj]un\./06\./
+s/[Jj]ul\./07\./
+s/[Aa]ug\./08\./
+s/[Ss]ept\./09\./
+s/[Oo]kt\./10\./
+s/[Nn]ov\./11\./
+s/[Dd]ez\./12\./
 T onedigit
 s/\(.*\)/\1 Month abbreviation replaced./
-t onedigit
 
 :onedigit
 /^[[:digit:]]\./s/\([[:digit:]]\.\)/0\1/	# Inserts 0 before day number, if it's a single digit.
 s/\.\([[:digit:]]\.\)/\.0\1/			# Adds 0 before month number, if it's a single digit.
 T invert
 s/\(.*\)/\1 Single digits completed with a leading zero./
-t invert
 
 :invert
 s:\([0-9]*\)\.\([0-9]*\)\.\([0-9]*\):\3/\2/\1:	# Inverts number sequence, "1.2.3" becomes "3/2/1".
