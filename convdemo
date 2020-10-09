@@ -1,6 +1,6 @@
 #! /bin/sed -f
 #
-# convdemo, 1.0.1
+# convdemo, 1.0.2
 #
 # Demonstrates the manipulations of the sed script convdate 2.1.0, which
 # converts a German date in an English format, f. e. "20.05.2018" to
@@ -13,12 +13,12 @@ p
 
 s/ //g  					# Delete spaces.
 T tabs
-s/\(.*\)/\1 Leerzeichen entfernt,/
+s/.*/& Leerzeichen entfernt,/
 
 : tabs
 s/[\t]//g  					# Delete tabs.
 T names
-s/\(.*\)/\1 Tabulatoren entfernt,/
+s/.*/& Tabulatoren entfernt,/
 
 # Replaces month names by numbers independent of the fact, if the first letter is in upper or lower case:
 :names
@@ -36,7 +36,7 @@ s/[Oo]ktober/10\./
 s/[Nn]ovember/11\./
 s/[Dd]ezember/12\./
 T abbrev
-s/\(.*\)/\1 Namen ersetzt,/
+s/.*/& Namen ersetzt,/
 
 # Same as before, but for the common German month abbreviations:
 :abbrev
@@ -51,18 +51,18 @@ s/[Oo]kt\./10\./
 s/[Nn]ov\./11\./
 s/[Dd]ez\./12\./
 T onedigit
-s/\(.*\)/\1 Abkürzung ersetzt,/
+s/.*/& Abkürzung ersetzt,/
 
 :onedigit
 /^[[:digit:]]\./s/\([[:digit:]]\.\)/0\1/	# Inserts 0 before day number, if it's a single digit.
 s/\.\([[:digit:]]\.\)/\.0\1/			# Adds 0 before month number, if it's a single digit.
 T invert
-s/\(.*\)/\1 Einzelziffern ergänzt,/
+s/.*/& Einzelziffern ergänzt,/
 
 :invert
 s:\([0-9]*\)\.\([0-9]*\)\.\([0-9]*\):\3/\2/\1:	# Inverts number sequence, "1.2.3" becomes "3/2/1".
 T end
-s/\(.*\)/\1 umgekehrt/
+s/.*/& umgekehrt/
 
 : end
 a\
